@@ -12,5 +12,5 @@ sudo apt update && sudo apt install ffmpeg
 
 You may need rust installed as well, in case tiktoken does not provide a pre-built wheel for your platform.
 ```
-sudo apt update && sudo apt install ffmpeg
+pip install setuptools-rust
 ```
