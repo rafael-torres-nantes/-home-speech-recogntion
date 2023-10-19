@@ -1,7 +1,6 @@
 import sounddevice as sd
 import soundfile as sf
 from scipy.io.wavfile import write
-import numpy
 import os
 
 def record_audio(saveAudioOn=False, durantion=10 , audioName='audio_folder/audio_test.wav'):
