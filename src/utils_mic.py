@@ -3,7 +3,7 @@ import soundfile as sf
 from scipy.io.wavfile import write
 import os
 
-def record_audio(saveAudioOn=False, durantion=10 , audioName='audio_folder/audio_test.wav'):
+def record_audio(saveAudioOn=False, durantion=10 , audioName='audio_folder/input_audio.wav'):
      
     '''
      Utilize o comando para acessar os microfones e os canais disponíveis:
@@ -25,7 +25,7 @@ def record_audio(saveAudioOn=False, durantion=10 , audioName='audio_folder/audio
 
     print("Áudio gravado com sucesso!")
 
-def reproduzir_audio(audioName='audio_test.wav', directoryName='audio_folder/',sample_frequence=44100):
+def reproduzir_audio(audioName='input_audio.wav', directoryName='audio_folder/',sample_frequence=44100):
     # Obtém uma lista de todos os arquivos no diretório
     file = os.path.join(directoryName, audioName)
 
