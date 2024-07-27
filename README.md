@@ -1,4 +1,4 @@
-# AraraBots@AtHome-SpeechRecogntion
+# 🎙️ AraraBots@AtHome-SpeechRecogntion
 
 Seja bem-vindo !!! O __Repositório AtHome-SpeechRecognition-Whisper__ documenta o projeto de reconhecimento de fala em casa utilizando o modelo Whisper. Aqui você encontrará informações detalhadas sobre o projeto, incluindo:
 
