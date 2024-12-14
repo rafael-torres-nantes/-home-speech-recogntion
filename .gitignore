@@ -1,1 +1,3 @@
 audio_folder/*.wav
+models/
+__pycache__
