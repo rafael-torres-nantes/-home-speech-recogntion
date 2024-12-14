@@ -1,17 +1,21 @@
 # 🎙️ Study - Speech Recognition using Whisper
 
-Seja bem-vindo! O __Repositório Speech Recognition - Whisper__ documenta o projeto de reconhecimento de fala em casa utilizando o modelo Whisper. Aqui você encontrará informações detalhadas sobre o projeto, incluindo:
+## 👨‍💻 Projeto desenvolvido por: 
+[Rafael Torres Nantes](https://github.com/rafael-torres-nantes)
 
-## 📌 Navegação
+## Índice
 
-- [📝 Sobre o Whisper e SpeechRecognition](#-sobre-o-whisper-e-speechrecognition)
-- [📁 Estrutura do Repositório](#-estrutura-do-repositório)
-- [💻 Desenvolvimento](#-desenvolvimento)
-  - [🔧 Ferramentas e tecnologias utilizadas](#-ferramentas-e-tecnologias-utilizadas)
-  - [📥 Instalação](#-instalação)
-  - [🚀 Uso](#-uso)
+* [📚 Contextualização do projeto](#-contextualização-do-projeto)
+* [🛠️ Tecnologias/Ferramentas utilizadas](#%EF%B8%8F-tecnologiasferramentas-utilizadas)
+* [🖥️ Funcionamento do sistema](#%EF%B8%8F-funcionamento-do-sistema)
+   * [🧩 Parte 1 - Backend](#parte-1---backend)
+   * [🎨 Parte 2 - Frontend](#parte-2---frontend)
+* [🔀 Arquitetura da aplicação](#arquitetura-da-aplicação)
+* [📁 Estrutura do projeto](#estrutura-do-projeto)
+* [📌 Como executar o projeto](#como-executar-o-projeto)
+* [🕵️ Dificuldades Encontradas](#%EF%B8%8F-dificuldades-encontradas)
 
-## 📝 Sobre o Whisper e SpeechRecognition
+## 📚 Contextualização do projeto
 
 O projeto Speech Recognition - Whisper visa desenvolver um sistema de reconhecimento de fala em casa utilizando o modelo Whisper de última geração. O sistema será capaz de:
 
@@ -23,145 +27,85 @@ O projeto Speech Recognition - Whisper visa desenvolver um sistema de reconhecim
 
 Whisper é um modelo de reconhecimento de fala desenvolvido pela OpenAI. Ele é capaz de transcrever e traduzir áudio com alta precisão. O modelo é treinado em uma grande quantidade de dados de áudio e texto, o que permite que ele funcione bem em uma variedade de idiomas e sotaques.
 
-## 📁 Estrutura do Repositório
+## 🛠️ Tecnologias/Ferramentas utilizadas
 
-Neste repositório, você encontrará as seguintes pastas e arquivos:
+[<img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">](https://www.python.org/)
+[<img src="https://img.shields.io/badge/Visual_Studio_Code-007ACC?logo=visual-studio-code&logoColor=white">](https://code.visualstudio.com/)
+[<img src="https://img.shields.io/badge/OpenAI-Whisper-FF9900?logo=openai&logoColor=white">](https://github.com/openai/whisper)
+[<img src="https://img.shields.io/badge/Scipy-8CAAE6?logo=scipy&logoColor=white">](https://www.scipy.org/)
+[<img src="https://img.shields.io/badge/Soundfile-FF6F00?logo=python&logoColor=white">](https://pypi.org/project/SoundFile/)
+[<img src="https://img.shields.io/badge/Sounddevice-FF6F00?logo=python&logoColor=white">](https://pypi.org/project/sounddevice/)
+[<img src="https://img.shields.io/badge/FFmpeg-007ACC?logo=ffmpeg&logoColor=white">](https://ffmpeg.org/)
+[<img src="https://img.shields.io/badge/Setuptools_Rust-FF6F00?logo=rust&logoColor=white">](https://pypi.org/project/setuptools-rust/)
 
-- `audio_folder/`: Pasta onde os arquivos de áudio gravados serão armazenados.
-- `devices/`: Contém o arquivo `mic_devices.py` que lida com dispositivos de microfone.
-- `env/`: Scripts de instalação para diferentes sistemas operacionais.
-  - `install_whisper_ubuntu.sh`
-  - `install_whisper_windows.sh`
-- `models/`: Contém os modelos Whisper.
-  - `tiny.pt`
-- `speech_to_text/`: Contém o arquivo `speech_recogntion.py` que lida com a transcrição de áudio.
-- `main.py`: Script principal para executar o projeto.
-- `.gitignore`: Arquivo para ignorar arquivos e pastas específicas no controle de versão.
-- `LICENSE`: Licença do projeto.
-- `README.md`: Este arquivo.
+## 🖥️ Funcionamento do sistema
 
-## 💻 Desenvolvimento
+### 🧩 Parte 1 - Backend
 
-### 🔧 Ferramentas e tecnologias utilizadas
+O backend da aplicação foi desenvolvido utilizando **Python** com diversas bibliotecas para gravação, reprodução e transcrição de áudio. As principais funcionalidades incluem a gravação de áudio, reprodução de áudio e transcrição de áudio utilizando o modelo Whisper.
 
-- [OpenAI Whisper](https://github.com/openai/whisper)
-- Python 3.11
-- PyTorch
-- Scipy
-- Soundfile
-- Sounddevice
-- FFmpeg
-- Setuptools-rust
+* **Gravação e Reprodução de Áudio**: O arquivo [`devices/mic_devices.py`](devices/mic_devices.py) contém a lógica para gravação e reprodução de áudio utilizando a biblioteca `sounddevice`.
+* **Transcrição de Áudio**: O arquivo [`speech_to_text/speech_recogntion.py`](speech_to_text/speech_recogntion.py) contém a lógica para transcrição de áudio utilizando o modelo Whisper.
 
-### 📥 Instalação
+### 🎨 Parte 2 - Frontend
 
-Para instalar as dependências do projeto, execute os seguintes comandos:
+O frontend foi construído para fornecer uma interface amigável ao usuário, permitindo que áudios sejam gravados e transcritos automaticamente. A estrutura utiliza **HTML, CSS, JavaScript**, e os scripts de comunicação com o backend são gerenciados pelo **FastAPI**.
 
-#### Ubuntu
+* **Estilos e Imagens**: A pasta `public/css` contém os arquivos de estilo para o layout da aplicação, enquanto a pasta `public/images` armazena os recursos visuais.
+* **Scripts**: Os arquivos `scripts/script.js` e `scripts/check_api.js` são responsáveis pela lógica de interação com o backend e validações do frontend.
 
-```sh
-# OBS: Este script deve ser executado no Python 3.11.9
+## 🔀 Arquitetura da aplicação
 
-# Instala a biblioteca scipy
-pip install scipy
+O sistema é baseado em uma arquitetura de microserviços, onde o backend se comunica com os serviços da AWS para análise e processamento dos documentos. O AWS Bedrock desempenha um papel central na geração dos resumos, enquanto **Fitz** lida com a leitura e extração dos textos dos documentos.
 
-# Instala a biblioteca soundfile
-pip install soundfile
+## 📁 Estrutura do projeto
 
-# Instala a biblioteca sounddevice
-pip install sounddevice
+A estrutura do projeto é organizada da seguinte maneira:
 
-# Atualiza a biblioteca openai-whisper para a versão mais recente
-pip install -U openai-whisper
-
-# Atualiza a lista de pacotes e instala o ffmpeg
-sudo apt update && sudo apt install ffmpeg
-
-# Instala a biblioteca setuptools-rust
-pip install setuptools-rust
+```
+.
+├── .gitignore
+├── controller/
+│   └── transcribe_audio.py
+├── devices/
+│   └── mic_devices.py
+├── env/
+│   ├── install_whisper_ubuntu.sh
+│   └── install_whisper_windows.sh
+├── LICENSE
+├── main.py
+├── README.md
+└── speech_to_text/
+    └── speech_recogntion.py
 ```
 
-#### Windows
+## 📌 Como executar o projeto
 
-```sh
-# OBS: Este script deve ser executado no Python 3.11.9
+Para executar o projeto localmente, siga as instruções abaixo:
 
-# Instale Chocolatey no PowerShell do Windows
-# https://chocolatey.org/install#individual
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/rafael-torres-nantes/AtHome-SpeechRecogntion-Whisper.git
+   ```
 
-# Instala a biblioteca scipy
-pip install scipy
+2. **Instale as dependências:**
+   ```bash
+   # Para Ubuntu
+   bash env/install_whisper_ubuntu.sh
 
-# Instala a biblioteca soundfile
-pip install soundfile
+   # Para Windows
+   bash env/install_whisper_windows.sh
+   ```
 
-# Instala a biblioteca sounddevice
-pip install sounddevice
+3. **Execute o script principal:**
+   ```bash
+   python main.py
+   ```
 
-# Utiliza o Chocolatey para instalar o ffmpeg
-choco install ffmpeg
+## 🕵️ Dificuldades Encontradas
 
-# Atualiza a biblioteca openai-whisper para a versão mais recente
-pip install -U openai-whisper
-```
+Durante o desenvolvimento do projeto, algumas dificuldades foram enfrentadas, como:
 
-### 🚀 Uso
-
-Para utilizar o projeto, siga os passos abaixo:
-
-1. Clone o repositório.
-2. Instale as dependências conforme descrito acima.
-3. Execute o script `main.py` para iniciar a transcrição de áudio.
-
-```bash
-# Clone o repositório
-git clone https://github.com/rafael-torres-nantes/AtHome-SpeechRecogntion-Whisper.git
-
-# Navegue até o diretório do projeto
-cd AtHome-SpeechRecogntion-Whisper
-
-# Instale as dependências conforme descrito acima
-# ...
-
-# Execute o script principal
-python main.py
-```
-
-#### Exemplo de Código
-
-Aqui está um exemplo de como utilizar o projeto em Python:
-
-```python
-import os
-from devices.mic_devices import AudioRecording
-from speech_to_text.speech_recogntion import SpeechToText
-
-# Exemplo de uso
-if __name__ == "__main__":
-    # Cria uma instância da classe SpeechToText
-    stt = SpeechToText()
-
-    # Carrega o modelo desejado (exemplo: 'tiny')
-    stt.load_model(model_name="tiny")
-
-    # Realiza a transcrição do áudio especificado
-    try:
-        audio_path = "audio_folder/audio_test.wav"
-
-        if not os.path.exists(audio_path):
-            raise FileNotFoundError(f"O arquivo de áudio '{audio_path}' não foi encontrado.")
-        
-        transcribed_text = stt.transcribe_audio(audio_file=audio_path, 
-                                                language="pt", 
-                                                task="transcribe", 
-                                                verbose=True)
-
-        # Detecta o idioma do áudio
-        detected_language = stt.detect_language(audio_file=audio_path)
-
-        # Realiza a decodificação com opções avançadas
-        decoded_text = stt.decode_audio(audio_file=audio_path)
-
-    except Exception as e:
-        print(f"Erro: {e}")
-```
+- **Integração com dispositivos de áudio:** A configuração e utilização de diferentes dispositivos de áudio exigiu testes e ajustes para garantir a compatibilidade e funcionalidade do sistema.
+- **Transcrição de áudio:** A implementação do modelo Whisper para transcrição de áudio exigiu ajustes para lidar com diferentes idiomas e sotaques.
+- **Gerenciamento de dependências:** A instalação e configuração das dependências do projeto, especialmente em diferentes sistemas operacionais, foi um desafio contínuo.
