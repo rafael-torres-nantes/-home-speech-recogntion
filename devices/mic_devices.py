@@ -3,7 +3,7 @@ import soundfile as sf
 import sounddevice as sd
 from scipy.io.wavfile import write
 
-class MicrophoneDevice:
+class AudioRecording:
     
     def __init__(self, sample_frequence=44100, microfone_channel=1, directoryName='audio_folder/'):
         """
@@ -19,7 +19,7 @@ class MicrophoneDevice:
         self.microfone_channel = microfone_channel
         self.directoryName = directoryName
 
-    def record_audio(self, saveAudioOn=False, duration=10, audioName='audio_folder/input_audio.wav'):
+    def record_audio(self, saveAudioOn=False, duration=10, audioName='input_audio.wav'):
         """
         Função para gravar áudio usando o microfone.
 
@@ -35,8 +35,11 @@ class MicrophoneDevice:
         recording = sd.rec(int(duration * self.sample_frequence), samplerate=self.sample_frequence, channels=self.microfone_channel)
         sd.wait()  # Aguarda o término da gravação
 
+        # Monta o caminho completo do arquivo no diretório
+        audioPath = os.path.join(self.directoryName, audioName)
+
         if saveAudioOn:
-            write(audioName, self.sample_frequence, recording)  # Salva o áudio em um arquivo
+            write(audioPath, self.sample_frequence, recording)  # Salva o áudio em um arquivo
 
         print("Áudio gravado com sucesso!")
 
@@ -78,7 +81,7 @@ class MicrophoneDevice:
 
 if __name__ == "__main__":
     # Instancia a classe com os parâmetros padrão
-    audio_utils = MicrophoneDevice()
+    audio_utils = AudioRecording()
 
     # Lista os dispositivos de entrada disponíveis
     audio_utils.list_available_channels()
